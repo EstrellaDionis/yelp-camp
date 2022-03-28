@@ -10,5 +10,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(9000, () => {
-  console.log("Serving on port 9000");
+  console.log("Running on port 9000");
 });
