@@ -7,7 +7,8 @@
 
 
 
-### Stack
+
+### Stack (npm i to install depencies)
 
 - ejs
 - ejs-mate
