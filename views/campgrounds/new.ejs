@@ -11,6 +11,7 @@
           id="title"
           name="campground[title]" required
         />
+        <div class="valid-feedback">Looks good!</div>
         <!-- using campground[data] allows us to group data together and easier to retrieve! -->
       </div>
       <div class="mb-3">
@@ -21,6 +22,7 @@
           id="'location"
           name="campground[location]" required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
 
       <div class="mb-3">
@@ -31,6 +33,7 @@
           id="'image"
           name="campground[image]" required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
 
 
@@ -39,6 +42,7 @@
         <div class="input-group">
           <span class="input-group-text" id="price-label">$</span>
           <input type="text" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" required>
+          <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
       
@@ -51,6 +55,7 @@
           id="'description"
           name="campground[description]" required
         /></textarea>
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success">Add Campground</button>
@@ -61,24 +66,3 @@
 </div>
 
 
-<script>
-  (function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.validated-form')
-
-  // Loop over them and prevent submission
-  Array.from(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
