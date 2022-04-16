@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Campground = require("./models/campground");
 const res = require("express/lib/response");
@@ -46,6 +47,8 @@ app.get("/campgrounds/new", (req, res) => {
 app.post(
   "/campgrounds",
   catchAsync(async (req, res, next) => {
+    if (!req.body.campground)
+      throw new ExpressError("Invalid Campground Data", 400);
     const campground = new Campground(req.body.campground); //we do req.body to see the data is grouped under campground as explained in new.ejs
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
@@ -89,8 +92,13 @@ app.delete(
   })
 );
 
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page Not Found", 404));
+});
+
 app.use((err, req, res, next) => {
-  res.send("Oh boy, something went wrong!");
+  const { statusCode = 500, message = "Something went wrong" } = err;
+  res.status(statusCode).send(message);
 });
 
 app.listen(9000, () => {
