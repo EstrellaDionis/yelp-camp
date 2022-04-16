@@ -5,9 +5,6 @@
 <p>This is a project using express, mongodb and ejs to make a site that display campgrounds for people to visit similar to airbnb. This is my first time using mongodb and ejs and it's very fun!</p>
 </div>
 
-
-
-
 ### npm i to install dependencies
 
 - ejs
@@ -15,7 +12,7 @@
 - express
 - method-override
 - mongoose
-
+- joi
 
 #### [GET] /camgrounds
 
