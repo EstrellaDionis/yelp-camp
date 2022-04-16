@@ -48,7 +48,7 @@ app.post(
   "/campgrounds",
   catchAsync(async (req, res, next) => {
     if (!req.body.campground)
-      throw new ExpressError("Invalid Campground Data", 400);
+      throw new ExpressError("Invalid Campground Data", 400); //catchAsync catches the error and hands it off to next and it goes down to the error catcher, NOT THE CATCH ALL
     const campground = new Campground(req.body.campground); //we do req.body to see the data is grouped under campground as explained in new.ejs
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
@@ -92,12 +92,14 @@ app.delete(
   })
 );
 
+//will only run if nothing else is matched first
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));
 });
 
+//error becomes the ExpressError function from the catch-all right above
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err;
+  const { statusCode = 500, message = "Something went wrong" } = err; //these ONLY TRIGGER if we did not provide a message or statusCode to any endpoint the ExpressError function is on!
   res.status(statusCode).send(message);
 });
 
