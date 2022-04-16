@@ -99,8 +99,9 @@ app.all("*", (req, res, next) => {
 
 //error becomes the ExpressError function from the catch-all right above
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err; //these ONLY TRIGGER if we did not provide a message or statusCode to any endpoint the ExpressError function is on!
-  res.status(statusCode).send(message);
+  const { statusCode = 500 } = err; //this ONLY TRIGGERS if we did not provide a message or statusCode to any endpoint the ExpressError function is on!
+  if (!err.message) err.message = "Oh No, Something went wrong";
+  res.status(statusCode).render("error", { err });
 });
 
 app.listen(9000, () => {
