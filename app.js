@@ -30,12 +30,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method")); //does not need to be '_method' and can be whatever we want
 
 const validateCampground = (req, res, next) => {
-  const { error } = campgroundSchema.validate(req.body);
+  const { error } = campgroundSchema.validate(req.body); //campgroundSchema is coming from schemas and .validate IS WHAT'S TELLING IT TO USE THE SCHEMA!
   if (error) {
+    //literally only handling IF there's an error
     const msg = error.details.map((e) => e.message).join(",");
     throw new ExpressError(msg, 400);
   } else {
-    next();
+    next(); //this is what sends to the next function!
   }
 };
 
