@@ -11,6 +11,7 @@ const Campground = require("./models/campground");
 const res = require("express/lib/response");
 const req = require("express/lib/request");
 
+//mongo connection to db
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
