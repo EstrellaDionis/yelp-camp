@@ -37,6 +37,7 @@ router.post(
 
     const campground = new Campground(req.body.campground); //we do req.body to see the data is grouped under campground as explained in new.ejs
     await campground.save();
+    req.flash("success", "Successfully made a new Campground!");
     res.redirect(`/campgrounds/${campground._id}`);
   })
 );
