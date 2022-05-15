@@ -46,6 +46,8 @@ app.use(session(sessionConfig));
 app.use(flash());
 
 app.use((req, res, next) => {
+  //res.locals.success - in our locals under the key 'success'
+  //  req.flash('success') - whatever is under req.flash('variableName'), it will display the message that its attached to wherever it is
   res.locals.success = req.flash("success");
   next();
 });
