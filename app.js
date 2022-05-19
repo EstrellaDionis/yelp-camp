@@ -8,6 +8,9 @@ const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const router = express.Router();
 const ExpressError = require("./utils/ExpressError");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
 
 const campgrounds = require("./routes/campgrounds");
 const reviews = require("./routes/reviews");
@@ -42,8 +45,15 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
-app.use(session(sessionConfig));
+app.use(session(sessionConfig)); //for creating sessions for users
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session()); //always make sure we use session (line 47) before passport.session
+passport.use(new LocalStrategy(User.authenticate())); //this is saying, passport, please use our LocalStrategy and for that LS the authentication method is located on the user model BUT WE didnt make authentication, its coming from PASSPORT
+
+passport.serializeUser(User.serializeUser()); //this is storing the session (login)
+passport.deserializeUser(User.deserializeUser()); //this is unstoring the session (logout)
 
 app.use((req, res, next) => {
   //res.locals.success - in our locals under the key 'success'
