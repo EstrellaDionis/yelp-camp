@@ -10,9 +10,14 @@
 - ejs
 - ejs-mate
 - express
+- express-session
 - method-override
 - mongoose
 - joi
+- connect-flash
+- passport
+- passport-local
+- passport-local-mongoose
 
 #### [GET] /camgrounds
 
