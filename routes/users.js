@@ -17,8 +17,11 @@ router.post(
       const user = new User({ email, username }); //dont need password in here because passport handles that for us
       const registeredUser = await User.register(user, password); //.register is a passport method. takes the new user and the password and stores the hash'd password and salts
       console.log(registeredUser);
-      req.flash("success", "Welcome to Yelp Camp!");
-      res.redirect("/campgrounds");
+      req.login(registeredUser, (err) => {
+        if (err) return next(err);
+        req.flash("success", "Welcome to Yelp Camp!");
+        res.redirect("/campgrounds");
+      });
     } catch (e) {
       req.flash("error", e.message); //e is error being handled by passport
       res.redirect("register");
