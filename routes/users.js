@@ -44,7 +44,9 @@ router.post(
   }),
   (req, res) => {
     req.flash("success", "welcome back!");
-    res.redirect("/campgrounds");
+    const redirectUrl = req.session.returnTo || "/campgrounds"; //returns us to wherever we were at. If we weren't anywhere, will send to /campgrounds
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
   }
 );
 
