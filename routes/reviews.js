@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-
+const { validateReview } = require("../middleware");
 const Campground = require("../models/campground");
 const Review = require("../models/review");
 
@@ -8,17 +8,6 @@ const { reviewSchema } = require("../schemas");
 
 const ExpressError = require("../utils/ExpressError");
 const catchAsync = require("../utils/catchAsync");
-
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    //literally only handling IF there's an error
-    const msg = error.details.map((e) => e.message).join(",");
-    throw new ExpressError(msg, 400);
-  } else {
-    next(); //this is what sends to the next function!
-  }
-};
 
 router.post(
   "/",
