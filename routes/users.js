@@ -3,35 +3,14 @@ const router = express.Router();
 const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
+const users = require("../controllers/users");
 const req = require("express/lib/request");
 
-router.get("/register", (req, res) => {
-  res.render("users/register");
-});
+router.get("/register", users.renderRegister);
 
-router.post(
-  "/register",
-  catchAsync(async (req, res) => {
-    try {
-      const { email, username, password } = req.body;
-      const user = new User({ email, username }); //dont need password in here because passport handles that for us
-      const registeredUser = await User.register(user, password); //.register is a passport method. takes the new user and the password and stores the hash'd password and salts
-      console.log(registeredUser);
-      req.login(registeredUser, (err) => {
-        if (err) return next(err);
-        req.flash("success", "Welcome to Yelp Camp!");
-        res.redirect("/campgrounds");
-      });
-    } catch (e) {
-      req.flash("error", e.message); //e is error being handled by passport
-      res.redirect("register");
-    }
-  })
-);
+router.post("/register", catchAsync(users.register));
 
-router.get("/login", (req, res) => {
-  res.render("users/login");
-});
+router.get("/login", users.renderLogin);
 
 //passport.authenticate is using the 'local' strategy
 // flash a failure message is something goes wrong
@@ -40,19 +19,11 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureFlash: true,
-    failureRedirect: "login",
+    failureRedirect: "/login",
   }),
-  (req, res) => {
-    req.flash("success", "welcome back!");
-    const redirectUrl = req.session.returnTo || "/campgrounds"; //returns us to wherever we were at. If we weren't anywhere, will send to /campgrounds
-    delete req.session.returnTo;
-    res.redirect(redirectUrl);
-  }
+  users.login
 );
 
-router.get("/logout", (req, res) => {
-  req.logout(); //.logout() coming from passport
-  req.flash("success", "Goodbye!");
-  res.redirect("/campgrounds");
-});
+router.get("/logout", users.logout);
+
 module.exports = router;
