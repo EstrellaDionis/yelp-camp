@@ -6,8 +6,8 @@ const campgrounds = require("../controllers/campgrounds");
 const ExpressError = require("../utils/ExpressError");
 const Campground = require("../models/campground");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
-const multer = require('multer')
-const upload = multer(dest: 'uploads/')
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 router.get("/", catchAsync(campgrounds.index));
 
