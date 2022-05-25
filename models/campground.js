@@ -4,7 +4,7 @@ const Schema = mongoose.Schema; //just to shorten future references
 
 const CampgroundSchema = new Schema({
   title: String,
-  image: String,
+  image: [{ url: String, filename: String }], //we're taking the filename because the best way to delete a picture is by the filename
   price: Number,
   description: String,
   location: String,
