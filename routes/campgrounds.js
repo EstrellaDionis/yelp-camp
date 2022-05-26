@@ -14,17 +14,18 @@ router.get("/", catchAsync(campgrounds.index));
 
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 
-// router.post(
-//   "/",
-//   isLoggedIn,
-//   validateCampground,
-//   catchAsync(campgrounds.createCampground)
-// );
+router.post(
+  "/",
+  isLoggedIn,
+  upload.array("image"), //image is from new form and is the NAME for the INPUT for image
+  validateCampground,
+  catchAsync(campgrounds.createCampground)
+);
 
-router.post("/", upload.array("image"), (req, res) => {
-  console.log(req.body, req.files);
-  res.send("It Worked");
-});
+// router.post("/", upload.array("image"), (req, res) => {
+//   console.log(req.body, req.files);
+//   res.send("It Worked");
+// });
 
 router.get("/:id", catchAsync(campgrounds.showCampground));
 
