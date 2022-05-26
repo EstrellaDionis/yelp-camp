@@ -28,10 +28,20 @@ const seedDB = async () => {
       author: "6289597b88f53260dd5202ad",
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
-      image: "https://source.unsplash.com/collection/483251",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore rerum voluptatum molestiae labore ipsam voluptatem a, non sequi similique ullam eos voluptates eum. Quasi illo earum ab dolore! Doloribus, suscipit!",
       price,
+      images: [
+        //copy pasted from console. Make sure you do not add in the id because its adds it FOR US and it will cause the app to break if you do
+        {
+          url: "https://res.cloudinary.com/dnyvhjgoo/image/upload/v1653580002/YelpCamp/hq2godxtpfdo0dv5u1ey.jpg",
+          filename: "YelpCamp/hq2godxtpfdo0dv5u1ey",
+        },
+        {
+          url: "https://res.cloudinary.com/dnyvhjgoo/image/upload/v1653580002/YelpCamp/ea9lanifwgowgs7zp5cc.jpg",
+          filename: "YelpCamp/ea9lanifwgowgs7zp5cc",
+        },
+      ],
     });
     await camp.save();
   }
