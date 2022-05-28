@@ -18,6 +18,10 @@
 - passport
 - passport-local
 - passport-local-mongoose
+- cloudinary
+- dotenv
+- multer
+- multer-storage-cloudinary
 
 #### [GET] /camgrounds
 
