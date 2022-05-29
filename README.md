@@ -23,6 +23,8 @@
 - multer
 - multer-storage-cloudinary
 
+#### Campground Routes
+
 #### [GET] /camgrounds
 
 #### [GET] /campgrounds/new
@@ -36,3 +38,9 @@
 #### [PUT] /campgrounds/:id
 
 #### [DELETE] /campgrounds/:id
+
+#### Review Routes
+
+#### [POST] /campgrounds/:id/reviews
+
+#### [DELETE] /campgrounds/:id/reviews/:reviewId
