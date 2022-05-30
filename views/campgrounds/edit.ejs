@@ -63,10 +63,23 @@
        <!-- custom file(in first div class) AND custom-file-label(in label class) are required along along with bs-custom-file-input(script in boilerplate) to allow user to see files names being uploaded-->
        <div class="mb-3 custom-file">
         <label for="formFileMultiple" class="form-label custom-file-label">Add more image(s)</label>
-        <input type="file" class="form-control" id="formFileMultiple" name="image" multiple required>
-        <div class="invalid-feedback">
+        <input type="file" class="form-control" id="formFileMultiple" name="image" multiple>
+        <!-- <div class="invalid-feedback">
             This campground would look much better with a picture.
+        </div> -->
+    </div>
+    
+    <div class="mb-3">
+      <!-- looping through each image in the campground -->
+      <% campground.images.forEach(function(img, i) { %>
+        <img src="<%=img.url %>" class="img-thumbnail" alt="">
+        <div class="form-check-inline">
+          <!-- id is the i.d for each image in the camp. value=img.filename is grabbing the filename from the database because thats what we have it stored as -->
+          <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename  %> ">
         </div>
+        <!-- the for is associating the input and the label together -->
+        <label for="image-<%= i %>">Delete?</label>
+        <% }) %>  
     </div>
 
       <div class="mb-3">

@@ -19,7 +19,6 @@ module.exports.createCampground = async (req, res, next) => {
   }));
   campground.author = req.user._id;
   await campground.save();
-  console.log(campground);
   req.flash("success", "Successfully made a new Campground!"); //the trigger is coming from res.locals middleware for flash
   res.redirect(`/campgrounds/${campground._id}`);
 };
@@ -52,6 +51,7 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateCampground = async (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
   const campground = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
