@@ -40,6 +40,8 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isAuthor,
+  upload.array("image"), //key of image in the edit form
   validateCampground,
   catchAsync(campgrounds.updateCampground)
 );
