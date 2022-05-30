@@ -29,13 +29,12 @@
 
       </div>
 
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label class="form-label" for="image">Add Images</label>
-        <!-- adding multiple at the end allows us to add more than 1 image at a time -->
         <input type="file" name="image" id="image" multiple> 
         <div class="valid-feedback">Looks good!</div>
 
-      </div>
+      </div> -->
 
 
       <div class="mb-3">
@@ -60,6 +59,16 @@
         <div class="valid-feedback">Looks good!</div>
 
       </div>
+
+       <!-- custom file(in first div class) AND custom-file-label(in label class) are required along along with bs-custom-file-input(script in boilerplate) to allow user to see files names being uploaded-->
+       <div class="mb-3 custom-file">
+        <label for="formFileMultiple" class="form-label custom-file-label">Add more image(s)</label>
+        <input type="file" class="form-control" id="formFileMultiple" name="image" multiple required>
+        <div class="invalid-feedback">
+            This campground would look much better with a picture.
+        </div>
+    </div>
+
       <div class="mb-3">
         <button class="btn btn-info">Update Campground</button>
       </div>

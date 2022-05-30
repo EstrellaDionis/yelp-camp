@@ -17,7 +17,7 @@ router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 router.post(
   "/",
   isLoggedIn,
-  upload.array("image"), //image is from new form and is the NAME for the INPUT for image
+  upload.array("image"), //image is from new form and is the NAME for the INPUT for image. upload.array is coming from MULTER
   validateCampground,
   catchAsync(campgrounds.createCampground)
 );
