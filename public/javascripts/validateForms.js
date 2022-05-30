@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  bsCustomFileInput.init(); //coming from bs-custom-file-input script in boilerplate
+  bsCustomFileInput.init(); //coming from bs-custom-file-input script in boilerplate. This is part of what PARSES the files and shows their names
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll(".validated-form");
