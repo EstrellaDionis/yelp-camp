@@ -20,7 +20,7 @@
 - passport-local-mongoose
 - cloudinary
 - dotenv
-- multer
+- multer1
 - multer-storage-cloudinary
 
 #### Campground Routes
