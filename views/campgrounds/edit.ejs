@@ -72,15 +72,12 @@
     <div class="mb-3">
       <!-- looping through each image in the campground -->
       <% campground.images.forEach(function(img, i) { %>
-        <img src="<%=img.url %>" class="img-thumbnail" alt="">
+        <img src="<%=img.url%>" class="img-thumbnail" alt="">
         <div class="form-check-inline">
-          <!-- id is the i.d for each image in the camp. value=img.filename is grabbing the filename from the database because thats what we have it stored as -->
-          <!-- name='deleteImages[] and value="img.filename " work together and whatever we select, gets added into the deleteImages[] so it becomes, deleteImages[img.filename, img.filename, etc] -->
-          <!-- look up documentation for this snippet from udemy: I read on mdn, "Value - A DOMString representing the value of the checkbox. This is not displayed on the client-side, but on the server this is the value given to the data submitted with the checkbox's name. ..A name of subscribe, and a value of newsletter. When the form is submitted, the data name/value pair will be subscribe=newsletter."-->
-          <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename  %> ">
+          <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%> ">
         </div>
         <!-- the for is associating the input and the label together -->
-        <label for="image-<%= i %>">Delete?</label>
+        <label for="image-<%=i%>">Delete?</label>
         <% }) %>  
     </div>
 
@@ -88,7 +85,9 @@
         <button class="btn btn-info">Update Campground</button>
       </div>
     </form>
-<a href="/campgrounds/<%= campground._id  %> ">Back to Campgrounds</a>
+<a href="/campgrounds/<%= campground._id  %> ">Back to Campground</a>
     
   </div>
 </div>
+
+
