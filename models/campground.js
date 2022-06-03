@@ -2,13 +2,17 @@ const mongoose = require("mongoose");
 const Review = require("./review");
 const Schema = mongoose.Schema; //just to shorten future references
 
-
+//previously was images : [{url: String, filename:String}], in the CampgroundSchema
 const ImageSchema = new Schema({
   url:String,
   filename:String
 })
 
+//on every image, we are calling it 'thumbnail'
 ImageSchema.virtual('thumbnail').get(function(){
+  //finding the first instance of /upload and replacing it with the next string
+  //this is in the actual url in the image ON cloudinary
+  //this. refers to the particular image
   return this.url.replace('/upload', '/upload/w_300')
 })
 
