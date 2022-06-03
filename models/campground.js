@@ -2,9 +2,19 @@ const mongoose = require("mongoose");
 const Review = require("./review");
 const Schema = mongoose.Schema; //just to shorten future references
 
+
+const ImageSchema = new Schema({
+  url:String,
+  filename:String
+})
+
+ImageSchema.virtual('thumbnail').get(function(){
+  return this.url.replace('/upload', '/upload/w_300')
+})
+
 const CampgroundSchema = new Schema({
   title: String,
-  images: [{ url: String, filename: String }], //we're taking the filename because the best way to delete a picture is by the filename
+  images: [ImageSchema],
   price: Number,
   description: String,
   location: String,
