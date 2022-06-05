@@ -25,6 +25,7 @@
 
 #### Campground Routes
 
+<!-- Display all campgrounds -->
 #### [GET] /camgrounds
 
 #### [GET] /campgrounds/new
