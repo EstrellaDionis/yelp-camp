@@ -27,7 +27,7 @@
 
 <!-- Display all campgrounds -->
 #### [GET] /camgrounds
-
+Returns every campground in the database
 #### [GET] /campgrounds/new
 
 #### [GET] /campgrounds/:id
