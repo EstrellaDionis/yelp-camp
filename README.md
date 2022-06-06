@@ -29,11 +29,11 @@
 #### [GET] /camgrounds
 Returns every campground in the database
 #### [GET] /campgrounds/new
-
+Create a new campground
 #### [GET] /campgrounds/:id
-
+Returns a specific campground
 #### [GET] /campgrounds/:id/edit
-
+Edit a specific campground
 #### [POST] /campgrounds
 
 #### [PUT] /campgrounds/:id
