@@ -38,6 +38,7 @@ Returns a specific campground
 Edit a specific campground
 
 #### [POST] /campgrounds
+Create a campground
 
 #### [PUT] /campgrounds/:id
 
